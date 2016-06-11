@@ -44,4 +44,9 @@ class fileStructureTest extends TestCase
     {
         $this->assertTrue(file_exists(__DIR__ . '/../web/'));
     }
+
+    public function testPublicAppEntryFileExist()
+    {
+        $this->assertTrue(file_exists(__DIR__ . '/../web/index.php'));
+    }
 }
