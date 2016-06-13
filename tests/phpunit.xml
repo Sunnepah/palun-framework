@@ -19,7 +19,7 @@
     </logging>
     <filter>
         <whitelist>
-            <directory suffix=".php">../application/</directory>
+            <directory suffix=".php">/../application/</directory>
             <exclude>
                 <directory suffix=".php">./units/</directory>
             </exclude>

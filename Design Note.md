@@ -6,10 +6,10 @@
     *   |---Models (hold data objects & interact with storage where objects are stored)
     &nbsp;&nbsp;&nbsp;&nbsp;|---...
     *   |---Config
-    *   |---src (holds core of the application registry)
     &nbsp;&nbsp;&nbsp;&nbsp;|---
     *   |---Libraries (holds business logic)
     &nbsp;&nbsp;&nbsp;&nbsp;|---
+* src (holds core of the application registry)
 * tests
     &nbsp;&nbsp;&nbsp;&nbsp;|---
 
