@@ -11,10 +11,14 @@
 
 namespace Palun;
 
+use InvalidArgumentException;
+
 class Application
 {
 
     private static $applicationInstance;
+
+    private $response;
 
     /**
      * Application constructor.
@@ -32,5 +36,29 @@ class Application
         }
 
         return self::$applicationInstance;
+    }
+
+    /**
+     * Application Routes definition
+     * This will be refactored and handle properly with a router class
+     */
+    public function routes () {
+        $path = $_SERVER['REQUEST_URI'];
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+
+        if (!is_string ($path)) {
+            throw new InvalidArgumentException('Route path must be a string');
+        }
+
+        if ($path == "/" && $requestMethod == "GET") {
+            $this->response = json_encode (['Palun' => "v1.0"]);
+        }
+    }
+
+    /**
+     *
+     */
+    public function dispatch () {
+        echo $this->response;
     }
 }
