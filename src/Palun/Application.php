@@ -12,6 +12,7 @@
 namespace Palun;
 
 use InvalidArgumentException;
+use RuntimeException;
 
 class Application
 {
@@ -52,6 +53,9 @@ class Application
 
         if ($path == "/" && $requestMethod == "GET") {
             $this->response = json_encode (['Palun' => "v1.0"]);
+        } else {
+            $this->response = http_response_code(404);
+            throw new RuntimeException('Requested endpoint '. $path . ' does not exist');
         }
     }
 
