@@ -7,6 +7,8 @@
  * Time: 2:19 AM
  */
 
+use Palun\Application;
+
 /**
  * Class ApplicationTest.
  */ 
