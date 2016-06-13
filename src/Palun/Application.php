@@ -12,12 +12,14 @@
 namespace Palun;
 
 use InvalidArgumentException;
-use RuntimeException;
+use Application\Controllers\PersonDetailsController;
 
 class Application
 {
 
     private static $applicationInstance;
+
+    private $controller;
 
     private $response;
 
@@ -41,7 +43,7 @@ class Application
 
     /**
      * Application Routes definition
-     * This will be refactored and handle properly with a router class
+     * This will be refactored and handle properly with a router module
      */
     public function routes () {
         $path = $_SERVER['REQUEST_URI'];
@@ -53,9 +55,18 @@ class Application
 
         if ($path == "/" && $requestMethod == "GET") {
             $this->response = json_encode (['Palun' => "v1.0"]);
-        } else {
-            $this->response = http_response_code(404);
-            throw new RuntimeException('Requested endpoint '. $path . ' does not exist');
+        } elseif  ($path == '/address') {
+            $this->controller = new PersonDetailsController();
+            
+            switch ($requestMethod) {
+                case "GET" :
+                    $this->response = $this->controller->get ();
+                    break;
+            }
+        }
+        else {
+            header('Status: 404', TRUE, 404);
+            $this->response = 'Requested endpoint '. $path . ' does not exist';
         }
     }
 
