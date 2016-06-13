@@ -12,7 +12,7 @@
     "guzzlehttp/guzzle": "~6.1"
   },
   "autoload": {
-    "psr-4": {"": "./application/"}
+    "psr-4": {"Palun\\": "src/Palun", "Application\\": "application"}
   },
   "autoload-dev": {
         "classmap": [
