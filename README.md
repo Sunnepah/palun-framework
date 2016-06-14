@@ -11,7 +11,7 @@ $ `composer install`
 
 $ `php -S 0.0.0.0:8080 -t web/`
 
-$ `curl --request GET --url http://0.0.0.0:8080/address`
+$ `curl --request GET --url http://0.0.0.0:8080/address` # List address endpoint
 
 #### To run tests
 $ `./vendor/bin/phpunit tests`
