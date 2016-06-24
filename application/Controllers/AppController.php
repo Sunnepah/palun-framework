@@ -12,6 +12,6 @@ namespace Application\Controllers;
 class AppController
 {
     public function index() {
-        return json_encode(['App' => 'Welcome!']);
+        return json_encode(['Palun' => "v1.0"]);;
     }
 }
