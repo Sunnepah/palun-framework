@@ -5,23 +5,23 @@
  * User: sunnepah
  * Date: 6/12/16
  * Time: 1:45 AM
- *
- * This class is the core of the Application registry
  */
-
 namespace Palun;
 
-use InvalidArgumentException;
-use Application\Controllers\PersonDetailsController;
+use Exception;
 
+/**
+ * Class Application
+ *
+ * This class is the core of the Application registry
+ *
+ * @package Palun
+ */
 class Application
 {
-
+    use Router;
+    
     private static $applicationInstance;
-
-    private $controller;
-
-    private $response;
 
     /**
      * Application constructor.
@@ -40,40 +40,33 @@ class Application
 
         return self::$applicationInstance;
     }
-
+    
     /**
-     * Application Routes definition
-     * This will be refactored and handle properly with a router module
+     * It gets route information - Http Verb and Request path
+     * If route found, it process request
      */
-    public function routes () {
-        $path = $_SERVER['REQUEST_URI'];
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
+    public function dispatch() {
 
-        if (!is_string ($path)) {
-            throw new InvalidArgumentException('Route path must be a string');
-        }
-
-        if ($path == "/" && $requestMethod == "GET") {
-            $this->response = json_encode (['Palun' => "v1.0"]);
-        } elseif  ($path == '/address') {
-            $this->controller = new PersonDetailsController();
+        list($method, $pathInfo) = $this->getRequestInfo();
+        
+        try {
             
-            switch ($requestMethod) {
-                case "GET" :
-                    $this->response = $this->controller->get ();
-                    break;
+            if (isset($this->routes[$method . $pathInfo])) {
+                return $this->handleRequest($this->routes[$method . $pathInfo]['action']);
             }
-        }
-        else {
-            header('Status: 404', TRUE, 404);
-            $this->response = 'Requested endpoint '. $path . ' does not exist';
+
+            $this->routeNotFound($method, $pathInfo);
+
+        } catch (Exception $e) {
+            return 'Caught exception: '.  $e->getMessage(). "\n";
         }
     }
 
     /**
-     *
+     * Run the Application by calling the dispatcher
      */
-    public function dispatch () {
-        echo $this->response;
+    public function run() {
+        
+        echo $this->dispatch();
     }
 }
