@@ -13,11 +13,10 @@ $app = \Palun\Application::singleton();
 
 /*
 |-------------------------------------------------------------------
-| Registering Application Routes
+| Register Application Routes
 |-------------------------------------------------------------------
 */
-$app->get('/',  'AppController:index');
-$app->get('/address',  'PersonDetailsController:get');
+require __DIR__ . '/../application/routes.php';
 
 /*
 |-------------------------------------------------------------------
