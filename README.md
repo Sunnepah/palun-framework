@@ -1,7 +1,5 @@
 ### PHP Web App
 
-[![Build Status](https://travis-ci.org/Sunnepah/php-webapp.svg?branch=master)](https://travis-ci.org/Sunnepah/php-webapp)
-
 NOTE: Requires [Composer](https://getcomposer.org/)
 
 #### Set Up
