@@ -11,6 +11,17 @@ require '../vendor/autoload.php';
  
 $app = \Palun\Application::singleton();
 
-$app->routes();
+/*
+|-------------------------------------------------------------------
+| Registering Application Routes
+|-------------------------------------------------------------------
+*/
+$app->get('/',  'AppController:index');
+$app->get('/address',  'PersonDetailsController:get');
 
-$app->dispatch();
+/*
+|-------------------------------------------------------------------
+| Running the Application
+|-------------------------------------------------------------------
+*/
+$app->run();
