@@ -25,6 +25,36 @@ trait Router
     }
 
     /**
+     * Register POST route
+     *
+     * @param $path
+     * @param $controllerAction
+     */
+    public function post($path, $controllerAction) {
+        $this->registerRoute ('POST', $path, $controllerAction);
+    }
+
+    /**
+     * Register PUT route
+     *
+     * @param $path
+     * @param $controllerAction
+     */
+    public function put($path, $controllerAction) {
+        $this->registerRoute ('PUT', $path, $controllerAction);
+    }
+
+    /**
+     * Register DELETE route
+     *
+     * @param $path
+     * @param $controllerAction
+     */
+    public function delete($path, $controllerAction) {
+        $this->registerRoute ('DELETE', $path, $controllerAction);
+    }
+
+    /**
      * Register routes
      * 
      * @param $httpVerb
