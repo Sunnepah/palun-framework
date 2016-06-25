@@ -13,4 +13,8 @@
 
 $app->get('/',  'AppController:index');
 
-$app->get('/address',  'PersonDetailsController:get');
+$app->get('/addresses',  'AddressesController:getAll');
+$app->get('/address',  'AddressesController:get');
+$app->post('/address',  'AddressesController:post');
+$app->put('/address',  'AddressesController:put');
+$app->delete('/address',  'AddressesController:delete');
