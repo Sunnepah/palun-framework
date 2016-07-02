@@ -59,7 +59,7 @@ class AddressRepository implements Repository
      * @return string
      */
     public function delete($id) {
-        return $this->model->save($this->db, $id);
+        return $this->model->delete($this->db, $id);
     }
 
     /**
@@ -67,6 +67,6 @@ class AddressRepository implements Repository
      * @return mixed|string
      */
     public function find($id) {
-        return $this->model->save($this->db, $id);
+        return $this->model->findOne($this->db, $id);
     }
 }
