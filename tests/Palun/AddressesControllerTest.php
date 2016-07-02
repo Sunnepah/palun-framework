@@ -68,4 +68,17 @@ class AddressesControllerTest extends TestCase
 
         $this->assertNotEmpty($data);
     }
+
+    public function test_put_request_fail_when_no_id() {
+
+        $response = $this->client->put('/address', ['http_errors' => false,
+            'json' => [
+                "names" => "Sunday",
+                "number" => "587423953",
+                "street" => "Tallinn Tartu"
+            ]
+        ]);
+
+        $this->assertEquals(400, $response->getStatusCode());
+    }
 }
