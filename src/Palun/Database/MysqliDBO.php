@@ -29,29 +29,29 @@ abstract class MysqliDBO implements DatabaseInterface {
         }
         
         $query = "SELECT * FROM " . $table . $where;
-        return $this->loadObjectList($query);
+        return $this->retrieveDataList($query);
     }
 
     public function insert($table, &$object) {
-        return $this->insertObject($table, $object);
+        return $this->insertData($table, $object);
     }
 
     public function find($table, $keyName) {
         $query = "SELECT * FROM " . $table . " WHERE id = ". $keyName;
-        return $this->loadObject($query);
+        return $this->retrieveDataObject($query);
     }
 
     public function update($table, &$object, $keyName) {
-        return $this->updateObject($table, $object, $keyName);
+        return $this->updateData($table, $object, $keyName);
     }
 
     public function delete($table, $keyName) {
         $query = "DELETE FROM " . $table . " WHERE id = " . $keyName;
-        return $this->loadResult($query);
+        return $this->mysqli->query($query);
     }
 
-    private function insertObject($table, &$object, $keyName = NULL) {
-        $fmtsql = 'INSERT INTO '.$this->nameQuote($table).' ( %s ) VALUES ( %s ) ';
+    private function insertData($table, &$object, $keyName = NULL) {
+        $fmtsql = 'INSERT INTO '.$this->quote($table).' ( %s ) VALUES ( %s ) ';
         $fields = array();
         foreach (get_object_vars( $object ) as $k => $v) {
             if (is_array($v) or is_object($v) or $v === NULL) {
@@ -75,8 +75,8 @@ abstract class MysqliDBO implements DatabaseInterface {
         return true;
     }
 
-    private function updateObject($table, &$object, $keyName, $updateNulls=true) {
-        $fmtsql = 'UPDATE '.$this->nameQuote($table).' SET %s WHERE %s';
+    private function updateData($table, &$object, $keyName, $updateNulls=true) {
+        $fmtsql = 'UPDATE '.$this->quote($table).' SET %s WHERE %s';
         $where = "";
         $tmp = array();
         foreach (get_object_vars( $object ) as $k => $v) {
@@ -98,12 +98,12 @@ abstract class MysqliDBO implements DatabaseInterface {
                 $v = $this->mysqli->real_escape_string($v);
                 $val = $v;
             }
-            $tmp[] = $this->nameQuote( $k ) . '=' . "'" . $val . "'";
+            $tmp[] = $this->quote( $k ) . '=' . "'" . $val . "'";
         }
         return $this->mysqli->query( sprintf( $fmtsql, implode( ",", $tmp ) , $where ) );
     }
 
-    private function loadObjectList($query) {
+    private function retrieveDataList($query) {
         $data = array();
         $query_result = $this->mysqli->query($query);
         $i = 0;
@@ -114,7 +114,7 @@ abstract class MysqliDBO implements DatabaseInterface {
         return $data;
     }
 
-    private function nameQuote($s) {
+    private function quote($s) {
         // Only quote if the name is not using dot-notation
         if (strpos( $s, '.' ) === false) {
             $q = $this->_nameQuote;
@@ -129,21 +129,8 @@ abstract class MysqliDBO implements DatabaseInterface {
         }
     }
 
-    private function loadObject($query){
+    private function retrieveDataObject($query){
         $query_result = $this->mysqli->query($query);
         return $query_result->fetch_object();
-    }
-
-    private function loadResult($query){
-        $result = $this->mysqli->query($query);
-        $row = $result->fetch_object();
-
-        if(!empty($row)){
-            foreach($row as $key=>$val) {
-                return $val;
-            }
-        }
-
-        return false;
     }
 }
