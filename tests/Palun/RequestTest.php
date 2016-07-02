@@ -33,6 +33,7 @@ class RequestTest extends \TestCase
         $this->request = new Request();
         
         $this->assertEquals("/address?id=1", $this->request->url);
+        $this->assertEquals("/address", $this->request->path);
         $this->assertEquals("GET", $this->request->method);
     }
 

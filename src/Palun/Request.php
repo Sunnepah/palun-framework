@@ -24,6 +24,11 @@ class Request
     public $url;
 
     /**
+     * @var string request path
+     */
+    public $path;
+
+    /**
      * @var string Parent subdirectory of the URL
      */
     public $base;
@@ -70,6 +75,8 @@ class Request
         if ($this->base != '/' && strlen($this->base) > 0 && strpos($this->url, $this->base) === 0) {
             $this->url = substr($this->url, strlen($this->base));
         }
+        
+        $this->path = self::getPathInfo();
 
         // Default url
         if (empty($this->url)) {
@@ -117,6 +124,16 @@ class Request
         }
 
         return strtoupper($method);
+    }
+
+    /**
+     * Get the current HTTP path info.
+     *
+     * @return string
+     */
+    public function getPathInfo()
+    {
+        return $this->path = parse_url($_SERVER['REQUEST_URI'])['path'];
     }
 
     /**

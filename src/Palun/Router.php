@@ -69,48 +69,8 @@ trait Router
     /**
      * @return array
      */
-    protected function getRequestInfo() {
-        return [$this->extractRequestMethod(), $this->extractRequestPathInfo()];
-    }
-
-    /**
-     * @return string
-     */
-    public function extractRequestMethod() {
-        return $this->getMethod();
-    }
-
-    /**
-     * @return string
-     */
-    public function extractRequestPathInfo() {
-        return $this->getPathInfo();
-    }
-
-    /**
-     * Get the current HTTP request method.
-     *
-     * @return string
-     */
-    protected function getMethod()
-    {
-        if (isset($_POST['_method'])) {
-            return strtoupper($_POST['_method']);
-        } else {
-            return $_SERVER['REQUEST_METHOD'];
-        }
-    }
-
-    /**
-     * Get the current HTTP path info.
-     *
-     * @return string
-     */
-    protected function getPathInfo()
-    {
-        $query = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
-
-        return '/'.trim(str_replace('?'.$query, '', $_SERVER['REQUEST_URI']), '/');
+    protected function getRequestInfo(Request $request) {
+        return [$request->getHttpMethod(), $request->path];
     }
 
     /**

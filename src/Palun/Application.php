@@ -47,10 +47,10 @@ class Application
      */
     public function dispatch() {
 
-        list($method, $pathInfo) = $this->getRequestInfo();
+        $request = new Request();
+        list($method, $pathInfo) = $this->getRequestInfo($request);
         
         try {
-            
             if (isset($this->routes[$method . $pathInfo])) {
                 return $this->handleRequest($this->routes[$method . $pathInfo]['action']);
             }
