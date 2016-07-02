@@ -22,6 +22,14 @@ abstract class Model
 
     /**
      * @param Database $db
+     * @return array
+     */
+    public function findOne(Database $db, $id) {
+        return $db->find($this->table, $id);
+    }
+
+    /**
+     * @param Database $db
      * @param $data
      * @return string
      */

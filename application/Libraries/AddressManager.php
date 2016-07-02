@@ -43,7 +43,12 @@ class AddressManager
      * @return string
      */
     public function createAddress($data) {
-        return $this->addressRepository->create($data);
+        $address = new \stdClass();
+        $address->names = $data['names'];
+        $address->number = $data['number'];
+        $address->street = $data['street'];
+        
+        return $this->addressRepository->create($address);
     }
 
     /**
@@ -52,7 +57,13 @@ class AddressManager
      * @return string
      */
     public function updateAddress($id, $data) {
-        return $this->addressRepository->update($data, $id);
+        $address = new \stdClass();
+        $address->id = $id;
+        $address->names = $data['names'];
+        $address->number = $data['number'];
+        $address->street = $data['street'];
+        
+        return $this->addressRepository->update($address, "id");
     }
 
     /**

@@ -21,19 +21,19 @@ interface Repository
     /**
      * Create a new model object
      *
-     * @param  array $data
+     * @param  \stdClass $data
      * @return mixed
      */
-    public function create(array $data);
+    public function create($data);
 
     /**
      * Update a model
      *
-     * @param  array  $data
+     * @param  \stdClass  $data
      * @param  $id
      * @return mixed
      */
-    public function update(array $data, $id);
+    public function update($data, $id);
 
     /**
      * Delete one or more models by id

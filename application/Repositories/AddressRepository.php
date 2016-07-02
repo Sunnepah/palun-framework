@@ -38,19 +38,19 @@ class AddressRepository implements Repository
     }
 
     /**
-     * @param array $data
+     * @param \stdClass $data
      * @return string
      */
-    public function create(array $data) {
+    public function create($data) {
         return $this->model->save($this->db, $data);
     }
 
     /**
-     * @param array $data
+     * @param \stdClass $data
      * @param $id
      * @return string
      */
-    public function update(array $data, $id) {
+    public function update($data, $id) {
         return $this->model->update($this->db, $data, $id);
     }
 
@@ -59,7 +59,7 @@ class AddressRepository implements Repository
      * @return string
      */
     public function delete($id) {
-        return $this->model->save($this->db, $id);
+        return $this->model->delete($this->db, $id);
     }
 
     /**
@@ -67,6 +67,6 @@ class AddressRepository implements Repository
      * @return mixed|string
      */
     public function find($id) {
-        return $this->model->save($this->db, $id);
+        return $this->model->findOne($this->db, $id);
     }
 }
