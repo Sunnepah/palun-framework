@@ -74,8 +74,19 @@ class AddressesController
         return json_encode($response);
     }
 
-    public function update($id, $data) {
+    public function put() {
 
+        $id = $this->request->query['id'];
+        if (!isset($id) || empty($this->request->query['id'])) {
+            http_response_code(400);
+            return \GuzzleHttp\json_encode(["Message" => "Missing resource id"]);
+        }
+
+        $data = $this->request->data;
+        if (empty($data)) {
+            http_response_code(400);
+            return \GuzzleHttp\json_encode(["message" => "Data is empty!"]);
+        }
         $response = $this->address->updateAddress($id, $data);
 
         return json_encode($response);
