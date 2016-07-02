@@ -77,6 +77,7 @@ class Request
         }
         
         $this->path = self::getPathInfo();
+        $this->type = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : "";
 
         // Default url
         if (empty($this->url)) {

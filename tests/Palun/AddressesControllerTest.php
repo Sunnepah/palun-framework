@@ -27,4 +27,28 @@ class AddressesControllerTest extends TestCase
 
         $this->assertNotNull($data);
     }
+
+    public function test_delete_request() {
+
+        $response = $this->client->delete('/address?id=13', ['http_errors' => false]);
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    public function test_post_request() {
+
+        $response = $this->client->post('/address', [
+            'json' => [
+                "names" => "Sunday",
+                "number" => "587423953",
+                "street" => "Tallinn 12345"
+            ]
+        ]);
+
+        $this->assertEquals(201, $response->getStatusCode());
+
+        $data = json_decode($response->getBody(), true);
+
+        $this->assertNotEmpty($data);
+    }
 }
