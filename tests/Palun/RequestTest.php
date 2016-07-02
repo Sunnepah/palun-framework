@@ -27,7 +27,7 @@ class RequestTest extends \TestCase
         $this->assertEquals("GET", $this->request->method);
     }
 
-    public function test_get_request_pass_query_properties() {
+    public function test_get_request_parse_query_properties() {
         $_SERVER['REQUEST_URI'] = '/address?id=1';
 
         $this->request = new Request();
@@ -36,7 +36,7 @@ class RequestTest extends \TestCase
         $this->assertEquals("GET", $this->request->method);
     }
 
-    public function test_post_request_pass_query_properties() {
+    public function test_post_request_body_parsed() {
         $_SERVER['REQUEST_URI'] = '/address';
         $_SERVER['REQUEST_METHOD'] = 'POST';
         
