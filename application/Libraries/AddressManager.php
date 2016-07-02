@@ -58,11 +58,12 @@ class AddressManager
      */
     public function updateAddress($id, $data) {
         $address = new \stdClass();
+        $address->id = $id;
         $address->names = $data['names'];
         $address->number = $data['number'];
         $address->street = $data['street'];
         
-        return $this->addressRepository->update($address, $id);
+        return $this->addressRepository->update($address, "id");
     }
 
     /**
