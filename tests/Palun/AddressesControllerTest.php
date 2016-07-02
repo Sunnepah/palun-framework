@@ -51,4 +51,21 @@ class AddressesControllerTest extends TestCase
 
         $this->assertNotEmpty($data);
     }
+
+    public function test_put_request() {
+
+        $response = $this->client->put('/address?id=1', [
+            'json' => [
+                "names" => "Sunday",
+                "number" => "587423953",
+                "street" => "Tallinn Tartu"
+            ]
+        ]);
+
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $data = json_decode($response->getBody(), true);
+
+        $this->assertNotEmpty($data);
+    }
 }
