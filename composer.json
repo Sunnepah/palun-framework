@@ -3,6 +3,17 @@
   "type": "project",
   "description": "A mini PHP MVC Project",
 
+  "require": {
+    "sunnepah/luster": "dev-master"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git@github.com:Sunnepah/luster.git",
+      "packagist": false
+    }
+  ],
+
   "require-dev": {
     "php": ">=5.6.0",
     "phpunit/phpunit": "~5.3.1",
@@ -12,7 +23,7 @@
     "guzzlehttp/guzzle": "~6.1"
   },
   "autoload": {
-    "psr-4": {"Palun\\": "src/Palun", "Application\\": "application"}
+    "psr-4": {"Application\\": "application"}
   },
   "autoload-dev": {
         "classmap": [
