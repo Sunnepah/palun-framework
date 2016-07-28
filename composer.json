@@ -4,12 +4,12 @@
   "description": "A mini PHP MVC Project",
 
   "require": {
-    "sunnepah/luster": "dev-master"
+    "sunnepah/lustre": "dev-master"
   },
   "repositories": [
     {
       "type": "git",
-      "url": "git@github.com:Sunnepah/luster.git",
+      "url": "git@github.com:Sunnepah/lustre.git",
       "packagist": false
     }
   ],
