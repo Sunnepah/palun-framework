@@ -9,7 +9,7 @@
 namespace Application\Repositories;
 
 use Application\Models\Address;
-use Palun\Database\Database;
+use Lustre\Database\Database;
 
 class AddressRepository implements Repository
 {
