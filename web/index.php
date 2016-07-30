@@ -9,7 +9,7 @@
 require '../vendor/autoload.php';
  
  
-$app = \Palun\Application::singleton();
+$app = \Lustre\Application::singleton();
 
 /*
 |-------------------------------------------------------------------

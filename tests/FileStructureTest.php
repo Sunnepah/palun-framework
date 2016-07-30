@@ -30,11 +30,6 @@ class fileStructureTest extends TestCase
         $this->assertTrue(file_exists(__DIR__ . '/../application/Config/'));
     }
 
-    public function testSrcDirectoryExist()
-    {
-        $this->assertTrue(file_exists(__DIR__ . '/../src/'));
-    }
-
     public function testLibrariesDirectoryExist()
     {
         $this->assertTrue(file_exists(__DIR__ . '/../application/Libraries/'));

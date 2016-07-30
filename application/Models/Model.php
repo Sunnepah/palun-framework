@@ -8,7 +8,7 @@
 
 namespace Application\Models;
 
-use Palun\Database\Database;
+use Lustre\Database\Database;
 
 abstract class Model
 {
