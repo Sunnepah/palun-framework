@@ -63,7 +63,7 @@ class AddressesController
         $response = $this->address->getAllAddresses();
 
         if ($response == null) {
-            return (new Response(null, 400))->json();
+            return (new Response(null, 404))->json();
         }
 
         return (new Response($response, 200))->json();
