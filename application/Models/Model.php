@@ -8,51 +8,51 @@
 
 namespace Application\Models;
 
-use Lustre\Database\Database;
+use Lustre\Database\DatabaseInterface;
 
 abstract class Model
 {
     /**
-     * @param Database $db
+     * @param DatabaseInterface $db
      * @return array
      */
-    public function findAll(Database $db) {
+    public function findAll(DatabaseInterface $db) {
         return $db->getAll($this->table);
     }
 
     /**
-     * @param Database $db
+     * @param DatabaseInterface $db
      * @return array
      */
-    public function findOne(Database $db, $id) {
+    public function findOne(DatabaseInterface $db, $id) {
         return $db->find($this->table, $id);
     }
 
     /**
-     * @param Database $db
+     * @param DatabaseInterface $db
      * @param $data
      * @return string
      */
-    public function save(Database $db, $data) {
+    public function save(DatabaseInterface $db, $data) {
         return $db->insert($this->table, $data);
     }
 
     /**
-     * @param Database $db
+     * @param DatabaseInterface $db
      * @param $data
      * @param $id
      * @return bool|\mysqli_result
      */
-    public function update(Database $db, $data, $id) {
+    public function update(DatabaseInterface $db, $data, $id) {
         return $db->update($this->table, $data, $id);
     }
 
     /**
-     * @param Database $db
+     * @param DatabaseInterface $db
      * @param $id
      * @return bool
      */
-    public function delete(Database $db, $id) {
+    public function delete(DatabaseInterface $db, $id) {
         return $db->delete($this->table, $id);
     }
 }

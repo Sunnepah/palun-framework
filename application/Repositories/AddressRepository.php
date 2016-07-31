@@ -9,7 +9,7 @@
 namespace Application\Repositories;
 
 use Application\Models\Address;
-use Lustre\Database\Database;
+use Lustre\Database\DatabaseInterface;
 
 class AddressRepository implements Repository
 {
@@ -20,9 +20,9 @@ class AddressRepository implements Repository
 
     /**
      * Repository constructor.
-     * @param Database $db
+     * @param DatabaseInterface $db
      */
-    public function __construct(Database $db)
+    public function __construct(DatabaseInterface $db)
     {
         $this->model = new Address();
         $this->db = $db;
