@@ -19,6 +19,15 @@ class AddressesControllerTest extends TestCase
     }
 
     public function test_get_all_address_list_endpoint_returns_200() {
+
+        $this->client->post('/address', [
+            'json' => [
+                "names" => "Sunday",
+                "number" => "587423953",
+                "street" => "Tallinn 12345"
+            ]
+        ]);
+        
         $response = $this->client->get('/addresses');
 
         $this->assertEquals(200, $response->getStatusCode());
