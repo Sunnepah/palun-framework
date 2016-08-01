@@ -1,6 +1,6 @@
 ### PHP Web App
 
-NOTE: Requires [Composer](https://getcomposer.org/)
+NOTE: Requires [Composer](https://getcomposer.org/), uses [Lustre Framework](https://github.com/Sunnepah/lustre)
 
 #### Set Up
 $ `git clone https://github.com/Sunnepah/php-webapp.git`
